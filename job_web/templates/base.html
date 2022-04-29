@@ -6,7 +6,7 @@
         {% block head_css %}
         {{ ckeditor.load() }}
         {{ ckeditor.load_code_theme() }}
-        {{ moment.include_jquery() }}
+		{#新版本flask moment不再需要这条语句 {{ moment.include_jquery() }}	 #}
         {{ moment.include_moment() }}
         {{ moment.lang('zh-CN')}}
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
