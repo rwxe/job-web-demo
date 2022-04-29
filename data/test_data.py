@@ -60,3 +60,9 @@ def run():
     f = FakerData()
     f.fake_user()
     f.fake_job()
+
+if __name__ =='__main__':
+    from job_web.app import create_app
+    app = create_app('development')
+    with app.app_context():
+        run()
