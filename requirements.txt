@@ -1,4 +1,5 @@
-Werkzeug==0.16.1
+Werkzeug
+email-validator
 Flask_WTF>=0.14.3
 Faker>=4.0.2
 lxml>=4.5.0
