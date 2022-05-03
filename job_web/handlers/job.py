@@ -30,8 +30,9 @@ def index():
 @job.route('/<int:job_id>')
 def detail(job_id):
     job_obj = Job.query.get_or_404(job_id)
-    if not job_obj.is_enable and job_obj.company_id != current_user.id:
-        abort(404)
+    # 求职者有必要在岗位下线后看到是什么岗位
+    #if not job_obj.is_enable and job_obj.company_id != current_user.id:
+    #    abort(404)
     return render_template('job/detail.html', job=job_obj)
 
 
