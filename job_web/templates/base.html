@@ -4,12 +4,17 @@
         <meta charset="UTF-8" />
         <title>{% block title %}{% endblock %}</title>
         {% block head_css %}
+		{# 	 
+		CKEditor 已经从后端删除，前端也不再需要加载了
         {{ ckeditor.load() }}
         {{ ckeditor.load_code_theme() }}
-		{#新版本flask moment不再需要这条语句 {{ moment.include_jquery() }}	 #}
+		新版moment不需要此语句
+		{{ moment.include_jquery() }}
+		#}
         {{ moment.include_moment() }}
         {{ moment.lang('zh-CN')}}
-        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		{#  	 <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css"> #}
+		<link rel="stylesheet" href="/static/bootstrap.min.css">
         <link rel="stylesheet" href="https://www.lgstatic.com/www/static/pkg/search-result/page/index/main.html_aio_2_3c98000.css">
         <link rel="stylesheet" href="https://www.lgstatic.com/www/static/pkg/widgets_4e04063.css">
         <link rel="stylesheet" href="https://www.lgstatic.com/www/static/pkg/job-detail/page/index/main.html_aio_2_1410e60.css">
@@ -136,8 +141,12 @@
             <!--{% endblock %}-->
         </div>
         {% block tail_js %}
-        <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		{# 
+		<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
         <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		#}
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/bootstrap.min.js"></script>
         {% endblock %}
     </body>
 </html>
