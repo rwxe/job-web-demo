@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
-# 企业logo
-static/logo/
+# 企业logo，求职者简历
+static/
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
