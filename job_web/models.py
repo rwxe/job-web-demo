@@ -30,9 +30,14 @@ class Base(db.Model):
 class UserBase(Base, UserMixin):
     __abstract__ = True
 
-    ROLE_USER = 10
-    ROLE_COMPANY = 20
-    ROLE_ADMIN = 30
+    #管理员
+    ROLE_ADMIN = 0
+    #求职者
+    ROLE_USER = 1
+    #公司
+    ROLE_COMPANY = 2
+    #公司子账户
+    ROLE_COMPANY_SUB = 3
 
     email = db.Column(db.String(64), unique=True, nullable=False)
     # phone = db.Column(db.Integer, unique=True, index=True, nullable=False)
