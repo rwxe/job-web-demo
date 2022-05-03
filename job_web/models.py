@@ -136,8 +136,11 @@ class Job(Base):
 class Delivery(Base):
     __tablename__ = 'delivery'
 
+    # 等待，未回应
     STATUS_WAITTING = 1
+    # 拒绝，不合适
     STATUS_REJECT = 2
+    # 面试
     STATUS_ACCEPT = 3
 
     id = db.Column(db.Integer, primary_key=True)
