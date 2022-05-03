@@ -123,14 +123,21 @@ class CompanyDetailForm(FlaskForm):
     field = SelectField('行业领域', choices=[(i, i) for i in FIELD])
     website = StringField('企业网址', validators=[URL(message='请输入正确网址')])
     description = TextAreaField('企业简介', validators=[Length(0, 50, message='最多50个字符')])
-    details = CKEditorField('企业详情', validators=[Length(0, 1000, message='最多1000个字符')])
+    details = TextAreaField('企业详情', validators=[Length(0, 1000, message='最多1000个字符')])
     submit = SubmitField('提交')
 
     def update_detail(self, company):
         self.populate_obj(company)
-        filename = uploaded_logo.save(self.logo.data, name=random_name())
-        logo_url = uploaded_logo.url(filename)
-        company.logo = logo_url
+
+        #import ipdb;ipdb.set_trace(())
+
+        if not isinstance(self.logo.data,str):
+            filename = uploaded_logo.save(self.logo.data, name=random_name())
+            logo_url = uploaded_logo.url(filename)
+            company.logo = logo_url
+        else:
+            logo_url=self.logo.data
+
         db.session.add(company)
         db.session.commit()
         return logo_url
@@ -146,8 +153,8 @@ class JobForm(FlaskForm):
     tags = StringField('职位标签(用逗号区隔)', validators=[Length(0, 64)])
     exp = SelectField('工作年限', choices=[(i, i) for i in EXP])
     education = SelectField('学历要求', choices=[(i, i) for i in EDUCATION])
-    treatment = CKEditorField('职位待遇', validators=[Length(0, 256, message='最多256个字符')])
-    description = CKEditorField('职位描述', validators=[DataRequired(message='请填写内容')])
+    treatment = TextAreaField('职位待遇', validators=[Length(0, 256, message='最多256个字符')])
+    description = TextAreaField('职位描述', validators=[DataRequired(message='请填写内容')])
     is_enable = SelectField('发布', choices=[(True, '立即发布'), (False, '暂不发布')], coerce=bool)
     submit = SubmitField('提交')
 
