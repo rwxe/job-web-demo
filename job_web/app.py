@@ -1,6 +1,6 @@
 from flask import Flask
 from job_web.config import configs
-from job_web.models import db, User, Company
+from job_web.models import Admin, db, User, Company
 from flask_ckeditor import CKEditor
 from flask_migrate import Migrate
 from flask_moment import Moment
@@ -33,6 +33,8 @@ def register_extensions(app):
             return User.query.get(id)
         elif Company.query.get(id):
             return Company.query.get(id)
+        elif Admin.query.get(id):
+            return Admin.query.get(id)
     login_manager.login_view = 'front.login'
 
 

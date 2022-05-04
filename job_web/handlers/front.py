@@ -3,7 +3,7 @@
 
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
-from ..models import Job, User, Company
+from ..models import Admin, Job, User, Company
 from ..forms import LoginForm
 
 front = Blueprint('front', __name__)
@@ -32,8 +32,11 @@ def login():
         if not user_data:
             user_data = Company.query.filter_by(email=form.email.data).first()
             if not user_data:
-                flash('登录信息有误，请重新登录', 'danger')
-                return redirect(url_for('front.login'))
+                user_data = Admin.query.filter_by(email=form.email.data).first()
+                if not user_data:
+                    flash('登录信息有误，请重新登录', 'danger')
+                    return redirect(url_for('front.login'))
+    
         if not user_data.check_password(form.password.data):
             flash('登录信息有误，请重新登录', 'danger')
             return redirect(url_for('front.login'))

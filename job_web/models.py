@@ -58,6 +58,9 @@ class UserBase(Base, UserMixin):
     def is_company(self):
         return self.role == self.ROLE_COMPANY
 
+    def is_company_sub(self):
+        return self.role == self.ROLE_COMPANY_SUB
+
     def is_admin(self):
         return self.role == self.ROLE_ADMIN
 
@@ -76,6 +79,14 @@ class User(UserBase):
 
 event.listen(User.__table__, "after_create", DDL("ALTER TABLE user AUTO_INCREMENT = 100000000"))
 
+class Admin(UserBase):
+    __tablename__ = 'admin'
+
+    id = db.Column(db.BigInteger, primary_key=True)
+    name = db.Column(db.String(8), nullable=False)
+    # 管理员和求职者大部分字段一样，但是没有简历
+    # resume = db.Column(db.String(128))
+    role = db.Column(db.SmallInteger, default=UserBase.ROLE_ADMIN)
 
 class Company(UserBase):
     __tablename__ = 'company'

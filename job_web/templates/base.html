@@ -77,6 +77,9 @@
                             <li class="{% if active == 'user_register' %}active{% endif %}">
                             	<a href="{{ url_for('user.register') }}">个人注册</a>
                             </li>
+                            <li class="{% if active == 'admin_register' %}active{% endif %}">
+                            	<a href="{{ url_for('admin.register') }}">管理员注册</a>
+                            </li>
                             <li class="{% if active == 'login' %}active{% endif %}">
                                 <a href="{{ url_for('front.login', next=request.path) }}">登录</a>
                             </li>

@@ -3,12 +3,24 @@
 
 from flask import Blueprint, render_template, \
     current_app, redirect, url_for, flash, request
-from flask_login import login_user
+from flask_login import current_user,login_user
+
+from job_web.forms import RegisterAdminForm
 from ..models import User, Job, Company
 from ..decorators import admin_required
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
+@admin.route('/register', methods=['GET', 'POST'])
+def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('front.index'))
+    form = RegisterAdminForm()
+    if form.validate_on_submit():
+        form.create_admin()
+        flash('注册成功，请登录', 'success')
+        return redirect(url_for('front.login'))
+    return render_template('admin/register.html', form=form, active='admin_register')
 
 @admin.route('/')
 @admin_required
