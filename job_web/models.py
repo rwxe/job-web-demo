@@ -88,6 +88,14 @@ class Admin(UserBase):
     # resume = db.Column(db.String(128))
     role = db.Column(db.SmallInteger, default=UserBase.ROLE_ADMIN)
 
+class Advertisement(Base):
+    __tablename__ = 'advertisement'
+
+    id = db.Column(db.BigInteger, primary_key=True)
+    url = db.Column(db.String(256))
+    picture = db.Column(db.String(128))
+
+
 class Company(UserBase):
     __tablename__ = 'company'
 
