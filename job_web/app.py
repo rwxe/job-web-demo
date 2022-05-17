@@ -50,6 +50,7 @@ def register_blueprints(app):
 def create_app(config):
     app = Flask(__name__)
     app.config.from_object(configs.get(config))
+    app.config['FLASK_ADMIN_SWATCH'] = 'sandstone'
     register_extensions(app)
     register_blueprints(app)
     db.init_app(app)

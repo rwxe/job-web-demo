@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-4">
     {% if job.is_enable %}
-      {% if current_user.role == 10 %}
+      {% if current_user.role == 1 %}
           {% if current_user.is_authenticated and job.is_applied() %}
             <a class="btn btn-success btn-lg dilivery-btn disabled navbar-btn" style="margin-top: 32px">已投递</a>
           {% else %}

@@ -24,7 +24,10 @@ class Base(db.Model):
                            onupdate=datetime.now)
 
     def __repr__(self):
-        return '<{}: {}>'.format(self.__class__.__name__, self.name)
+        try:
+            return '<{}: {}>'.format(self.__class__.__name__, self.name)
+        except:
+            return 'NULL'
 
 
 class UserBase(Base, UserMixin):
@@ -177,6 +180,9 @@ class Delivery(Base):
     resume = db.Column(db.String(128))
     status = db.Column(db.SmallInteger, default=STATUS_WAITTING, index=True)
     company_response = db.Column(db.String(256))
+
+    def __repr__(self):
+        return '<{}投递了{}>'.format(self.user,self.job)
 
     def accept(self):
         self.status = self.STATUS_ACCEPT

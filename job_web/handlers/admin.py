@@ -9,7 +9,8 @@ from job_web.forms import RegisterAdminForm
 from ..models import User, Job, Company
 from ..decorators import admin_required
 
-admin = Blueprint('admin', __name__, url_prefix='/admin')
+admin = Blueprint('oldad', __name__, url_prefix='/oldad')
+
 
 @admin.route('/register', methods=['GET', 'POST'])
 def register():

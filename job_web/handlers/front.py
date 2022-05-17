@@ -3,7 +3,7 @@
 
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 from flask_login import login_user, logout_user, login_required, current_user
-from ..models import Admin, Job, User, Company
+from ..models import Admin, Advertisement, Job, User, Company
 from ..forms import LoginForm
 
 front = Blueprint('front', __name__)
@@ -18,8 +18,15 @@ def index():
             companies.append(c)
             if len(companies) == 8:
                 break
-    jobs = Job.query.group_by(Job.company_id).order_by(Job.updated_at.desc()).limit(12)
-    return render_template('index.html', active='index', jobs=jobs, companies=companies)
+    # jobs = Job.query.group_by(Job.company_id).order_by(Job.updated_at.desc()).limit(12)
+    jobs = Job.query.filter(Job.is_enable.is_(True)).order_by(Job.updated_at.desc()).limit(12)
+    #jobs = Job.query.group_by(Job.company_id).order_by(Job.updated_at.desc()).limit(12)
+    adv = Advertisement.query.order_by(Advertisement.updated_at.desc()).first()
+    #import ipdb;ipdb.set_trace()
+    print("DEBUG1",companies)
+    print("DEBUG2",jobs)
+    print("DEBUG3",adv)
+    return render_template('index.html', active='index', jobs=jobs, companies=companies,adv=adv)
 
 
 @front.route('/login', methods=['GET', 'POST'])

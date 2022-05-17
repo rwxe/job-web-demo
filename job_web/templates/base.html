@@ -64,7 +64,7 @@
                                    value="{{ request.args.get('kw', '') }}" placeholder="搜索">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="submit">
-                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    <span class="" aria-hidden="true">搜索</span>
                                 </button>
                             </span>
                           </div>
@@ -77,9 +77,11 @@
                             <li class="{% if active == 'user_register' %}active{% endif %}">
                             	<a href="{{ url_for('user.register') }}">个人注册</a>
                             </li>
+							{# 	
                             <li class="{% if active == 'admin_register' %}active{% endif %}">
-                            	<a href="{{ url_for('admin.register') }}">管理员注册</a>
+                            	<a href="{{ url_for('oldad.register') }}">管理员注册</a>
                             </li>
+							#}
                             <li class="{% if active == 'login' %}active{% endif %}">
                                 <a href="{{ url_for('front.login', next=request.path) }}">登录</a>
                             </li>
@@ -99,7 +101,7 @@
                             {% endif %}
                             {% if current_user.is_admin() %}
                                 <li class="{% if active == 'manage' %}active{% endif %}">
-                                    <a href="{{ url_for('admin.index') }}">管理后台</a>
+                                    <a href="{{ url_for('oldad.index') }}">管理后台</a>
                                 </li>
                             {% endif %}
                             <li class="dropdown">

@@ -4,43 +4,43 @@
 {% block title %}主页{% endblock %}
 
 {% block head %}
-<div class="jumbotron">
-  <div class="container">
-    <h1>广告位招租</h1>
-    <p>TODO:广告位置</p>
-  </div>
-</div>
+<a href="{{adv.url}}" target="_blank">
+	<div class="jumbotron" style=" background-size:contain; background-image: url({{adv.picture}});">
+	  <div class="container " style="height:200px;">
+	  </div>
+	</div>
+</a>
 {% endblock %}
 
 {% block body %}
+<div>
 <ul class="nav nav-tabs list-title">
   <li role="presentation" class="active">
     <a href="#">最新职位</a>
   </li>
 </ul>
-
 <div class="job-list">
   {% for job in jobs %}
     {{ render_job(job) }}
   {% endfor %}
 </div>
-
 <p class="list-more">
   <a href="{{ url_for('job.index') }}" class="btn btn-success btn-lg list-more-btn">
     查看更多
   </a>
 </p>
-
+</div>
+<div>
 <ul class="nav nav-tabs list-title">
   <li role="presentation" class="active">
     <a href="#">最新公司</a>
   </li>
 </ul>
-
 <div class="company-list">
   {% for company in companies %}
     {{ render_company(company) }}
   {% endfor %}
+</div>
 </div>
 
 <p class="list-more">

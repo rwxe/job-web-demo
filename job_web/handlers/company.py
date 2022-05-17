@@ -18,7 +18,7 @@ def register():
     form = RegisterCompanyForm()
     if form.validate_on_submit():
         form.create_company()
-        flash('注册成功，请登录', 'success')
+        flash('信息提交成功，请等待管理员审核，审核通过后即可登录', 'success')
         return redirect(url_for('front.login'))
     return render_template('company/register.html', form=form, active='company_register')
 

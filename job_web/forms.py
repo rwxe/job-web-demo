@@ -91,6 +91,7 @@ class RegisterCompanyForm(FlaskForm):
         company.name = self.name.data
         company.email = self.email.data
         company.password = self.password.data
+        company.is_enable=False
         db.session.add(company)
         db.session.commit()
         return company
@@ -125,7 +126,7 @@ class UserDetailForm(RegisterUserForm):
 
 class UserResumeForm(FlaskForm):
 
-    resume = FileField('简历上传（暂仅支持图片，300KB以内）', validators=[
+    resume = FileField('简历上传', validators=[
         FileAllowed(uploaded_resume, '不符合文件格式'),
         FileRequired('文件未选择')])
     submit = SubmitField('上传')
